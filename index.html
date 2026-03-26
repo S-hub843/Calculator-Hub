@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculator Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <h1>Calculator Hub</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search calculators..." oninput="filterTools()" />
+  </div>
+</header>
+<section class="hero">
+  <h2>All Your Calculators in One Place</h2>
+  <p>
+    Quickly solve everyday calculations — finance, personal, and health tools 
+    designed for speed and simplicity.
+  </p>
+</section>
+<section class="popular">
+  <h3>Popular Calculators</h3>
+
+  <div class="popular-grid">
+    <div class="popular-card" onclick="openTool('emiTool')">EMI</div>
+    <div class="popular-card" onclick="openTool('gstTool')">GST</div>
+    <div class="popular-card" onclick="openTool('bmiTool')">BMI</div>
+    <div class="popular-card" onclick="openTool('percentageTool')">Percentage</div>
+  </div>
+</section>
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="showSection('finance', this)">Finance</button>
+  <button class="tab" onclick="showSection('personal', this)">Personal</button>
+  <button class="tab" onclick="showSection('health', this)">Health</button>
+  <button class="tab" onclick="showSection('business', this)">Business</button>
+</div>
+
+<!-- Tool List -->
+<div class="container">
+
+  <!-- Finance -->
+  <div id="finance" class="section active">
+    <h2>Finance Calculators</h2>
+    <p class="section-desc">Tools to calculate loans, taxes, returns, and business costs.</p>
+
+    <div class="grid">
+      <div class="tool" onclick="openTool('emiTool')">
+        <h4>EMI Calculator</h4>
+        <p>Estimate your monthly loan payments.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('gstTool')">
+        <h4>GST Calculator</h4>
+        <p>Calculate GST amount and total price.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('roiTool')">
+        <h4>ROI Calculator</h4>
+        <p>Measure return on investment.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('interestTool')">
+        <h4>Interest Calculator</h4>
+        <p>Calculate interest over time.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('breakevenTool')">
+        <h4>Break-even Calculator</h4>
+        <p>Find when revenue equals cost.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal -->
+  <div id="personal" class="section">
+    <h2>Personal Calculators</h2>
+    <p class="section-desc">Useful daily tools for time, age, and percentage calculations.</p>
+
+    <div class="grid">
+      <div class="tool" onclick="openTool('ageTool')">
+        <h4>Age Calculator</h4>
+        <p>Calculate age from birth year.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('percentageTool')">
+        <h4>Percentage Calculator</h4>
+        <p>Quickly find percentages.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('timeTool')">
+        <h4>Time Difference</h4>
+        <p>Find duration between two times.</p>
+      </div>
+
+      <div class="tool" onclick="openTool('dateTool')">
+        <h4>Days Between Dates</h4>
+        <p>Calculate difference between dates.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Health -->
+  <div id="health" class="section">
+    <h2>Health Calculators</h2>
+    <p class="section-desc">Understand basic health metrics easily.</p>
+
+    <div class="grid">
+
+  <div class="tool" onclick="openTool('bmiTool')">
+    <h4>BMI Calculator</h4>
+    <p>Check your body mass index.</p>
+  </div>
+
+  <div class="tool" onclick="openTool('calorieTool')">
+    <h4>Calorie Calculator</h4>
+    <p>Estimate daily calorie needs.</p>
+  </div>
+
+  <div class="tool" onclick="openTool('waterTool')">
+    <h4>Water Intake</h4>
+    <p>Find how much water you should drink.</p>
+  </div>
+
+  <div class="tool" onclick="openTool('pregnancyTool')">
+    <h4>Pregnancy Calculator</h4>
+    <p>Estimate due date and pregnancy timeline.</p>
+  </div>
+
+</div>
+  </div>
+
+  <!-- Business -->
+ <div id="business" class="section">
+  <h2>Business Calculators</h2>
+  <p class="section-desc">Tools to estimate business value, profits, and costs.</p>
+
+  <div class="grid">
+
+    <div class="tool" onclick="openTool('startupTool')">
+      <h4>Startup Valuation</h4>
+      <p>Estimate your startup’s market value.</p>
+    </div>
+
+    <div class="tool" onclick="openTool('profitTool')">
+      <h4>Profit Margin</h4>
+      <p>Calculate profit percentage from revenue.</p>
+    </div>
+
+    <div class="tool" onclick="openTool('costTool')">
+      <h4>Cost Estimator</h4>
+      <p>Estimate total cost for your product or service.</p>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<!-- Tool View -->
+<div id="toolView" class="tool-view">
+
+  <button class="back-btn" onclick="goBack()">← Back</button>
+
+  <!-- EMI -->
+  <div id="emiTool" class="tool-content">
+    <h2>EMI Calculator</h2>
+    <p class="tool-desc">Calculate monthly EMI based on loan details.</p>
+    <input id="principal" placeholder="Principal" />
+    <input id="rate" placeholder="Rate" />
+    <input id="time" placeholder="Time" />
+    <button onclick="getEMI()">Calculate</button>
+    <p id="emiResult"></p>
+  </div>
+
+  <!-- GST -->
+  <div id="gstTool" class="tool-content">
+    <h2>GST Calculator</h2>
+    <p class="tool-desc">Calculate GST amount easily.</p>
+    <input id="gstAmount" placeholder="Amount" />
+    <input id="gstRate" placeholder="GST %" />
+    <button onclick="getGST()">Calculate</button>
+    <p id="gstResult"></p>
+  </div>
+
+  <!-- ROI -->
+  <div id="roiTool" class="tool-content">
+    <h2>ROI Calculator</h2>
+    <p class="tool-desc">Measure your investment returns.</p>
+    <input id="roiInvestment" placeholder="Investment" />
+    <input id="roiReturns" placeholder="Returns" />
+    <button onclick="getROI()">Calculate</button>
+    <p id="roiResult"></p>
+  </div>
+
+  <!-- Interest -->
+  <div id="interestTool" class="tool-content">
+    <h2>Interest Calculator</h2>
+    <p class="tool-desc">Calculate simple interest.</p>
+    <input id="intPrincipal" placeholder="Principal" />
+    <input id="intRate" placeholder="Rate" />
+    <input id="intTime" placeholder="Time" />
+    <button onclick="getInterest()">Calculate</button>
+    <p id="interestResult"></p>
+  </div>
+
+  <!-- Break-even -->
+  <div id="breakevenTool" class="tool-content">
+    <h2>Break-even Calculator</h2>
+    <p class="tool-desc">Find your break-even point.</p>
+    <input id="fixedCost" placeholder="Fixed Cost" />
+    <input id="pricePerUnit" placeholder="Price per Unit" />
+    <input id="variableCost" placeholder="Variable Cost" />
+    <button onclick="getBreakeven()">Calculate</button>
+    <p id="breakevenResult"></p>
+  </div>
+
+  <!-- Personal -->
+  <div id="ageTool" class="tool-content">
+    <h2>Age Calculator</h2>
+    <p class="tool-desc">Calculate your age instantly.</p>
+    <input id="birthYear" placeholder="Birth Year" />
+    <button onclick="getAge()">Calculate</button>
+    <p id="ageResult"></p>
+  </div>
+
+  <div id="percentageTool" class="tool-content">
+    <h2>Percentage Calculator</h2>
+    <p class="tool-desc">Find percentage values easily.</p>
+    <input id="obtained" placeholder="Obtained" />
+    <input id="total" placeholder="Total" />
+    <button onclick="getPercentage()">Calculate</button>
+    <p id="percentageResult"></p>
+  </div>
+
+  <div id="timeTool" class="tool-content">
+    <h2>Time Difference</h2>
+    <p class="tool-desc">Calculate duration between times.</p>
+    <input id="startTime" type="time" />
+    <input id="endTime" type="time" />
+    <button onclick="getTimeDuration()">Calculate</button>
+    <p id="timeResult"></p>
+  </div>
+
+  <div id="dateTool" class="tool-content">
+    <h2>Days Between Dates</h2>
+    <p class="tool-desc">Calculate days between dates.</p>
+    <input id="startDate" type="date" />
+    <input id="endDate" type="date" />
+    <button onclick="getDateDiff()">Calculate</button>
+    <p id="dateResult"></p>
+  </div>
+
+  <!-- BMI -->
+  <div id="bmiTool" class="tool-content">
+    <h2>BMI Calculator</h2>
+    <p class="tool-desc">Check your body mass index.</p>
+    <input id="bmiWeight" placeholder="Weight" />
+    <input id="bmiHeight" placeholder="Height" />
+    <button onclick="getBMI()">Calculate</button>
+    <p id="bmiResult"></p>
+  </div>
+  <div id="calorieTool" class="tool-content">
+  <h2>Calorie Calculator</h2>
+  <p class="tool-desc">Estimate your daily calorie requirement.</p>
+
+  <input id="ageCal" placeholder="Age" />
+  <input id="weightCal" placeholder="Weight" />
+  <input id="heightCal" placeholder="Height" />
+  <input id="genderCal" placeholder="Gender" />
+
+  <button onclick="getCalories()">Calculate</button>
+  <p id="calorieResult"></p>
+</div>
+<div id="waterTool" class="tool-content">
+  <h2>Water Intake Calculator</h2>
+  <p class="tool-desc">Find your recommended daily water intake.</p>
+
+  <input id="weightWater" placeholder="Weight" />
+
+  <button onclick="getWater()">Calculate</button>
+  <p id="waterResult"></p>
+</div>
+<div id="pregnancyTool" class="tool-content">
+  <h2>Pregnancy Calculator</h2>
+  <p class="tool-desc">Estimate your pregnancy due date.</p>
+
+  <input id="lastPeriod" type="date" />
+
+  <button onclick="getPregnancy()">Calculate</button>
+  <p id="pregnancyResult"></p>
+</div>
+<div id="startupTool" class="tool-content">
+  <h2>Startup Valuation</h2>
+  <p class="tool-desc">Estimate your startup’s valuation based on revenue and growth.</p>
+
+  <input id="revenueVal" placeholder="Revenue" />
+  <input id="growthVal" placeholder="Growth Rate" />
+
+  <button onclick="getValuation()">Calculate</button>
+  <p id="valuationResult"></p>
+</div>
+<div id="profitTool" class="tool-content">
+  <h2>Profit Margin</h2>
+  <p class="tool-desc">Calculate your profit margin percentage.</p>
+
+  <input id="costProfit" placeholder="Cost" />
+  <input id="revenueProfit" placeholder="Revenue" />
+
+  <button onclick="getProfit()">Calculate</button>
+  <p id="profitResult"></p>
+</div>
+<div id="costTool" class="tool-content">
+  <h2>Cost Estimator</h2>
+  <p class="tool-desc">Estimate total cost including fixed and variable expenses.</p>
+
+  <input id="fixedCostEst" placeholder="Fixed Cost" />
+  <input id="variableCostEst" placeholder="Variable Cost" />
+
+  <button onclick="getCost()">Calculate</button>
+  <p id="costResult"></p>
+</div>
+</div>
+<footer class="footer">
+
+  <div class="footer-content">
+
+    <!-- Left -->
+    <div class="footer-left">
+      <h3>Calculator Hub</h3>
+      <p>Simple tools for everyday calculations.</p>
+    </div>
+
+    <!-- Center -->
+    <div class="footer-center">
+      <p>
+        “The right tools don’t just save time — they make decisions easier.”
+      </p>
+    </div>
+
+    <!-- Right -->
+    <div class="footer-right">
+      <p>Contact</p>
+      <p>Email: support@calculatorhub.com</p>
+      <p>© 2026 Calculator Hub</p>
+    </div>
+
+  </div>
+
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
