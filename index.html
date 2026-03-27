@@ -169,9 +169,9 @@
   <div id="emiTool" class="tool-content">
     <h2>EMI Calculator</h2>
     <p class="tool-desc">Calculate monthly EMI based on loan details.</p>
-    <input id="principal" placeholder="Principal" />
-    <input id="rate" placeholder="Rate" />
-    <input id="time" placeholder="Time" />
+    <input id="principal" placeholder="Principal(₹)" />
+    <input id="rate" placeholder="Rate(%)" />
+    <input id="time" placeholder="Time(years)" />
     <button onclick="getEMI()">Calculate</button>
     <p id="emiResult"></p>
   </div>
@@ -180,7 +180,7 @@
   <div id="gstTool" class="tool-content">
     <h2>GST Calculator</h2>
     <p class="tool-desc">Calculate GST amount easily.</p>
-    <input id="gstAmount" placeholder="Amount" />
+    <input id="gstAmount" placeholder="Amount(₹)" />
     <input id="gstRate" placeholder="GST %" />
     <button onclick="getGST()">Calculate</button>
     <p id="gstResult"></p>
@@ -190,8 +190,8 @@
   <div id="roiTool" class="tool-content">
     <h2>ROI Calculator</h2>
     <p class="tool-desc">Measure your investment returns.</p>
-    <input id="roiInvestment" placeholder="Investment" />
-    <input id="roiReturns" placeholder="Returns" />
+    <input id="roiInvestment" placeholder="Investment(₹)" />
+    <input id="roiReturns" placeholder="Returns(₹)" />
     <button onclick="getROI()">Calculate</button>
     <p id="roiResult"></p>
   </div>
@@ -200,9 +200,9 @@
   <div id="interestTool" class="tool-content">
     <h2>Interest Calculator</h2>
     <p class="tool-desc">Calculate simple interest.</p>
-    <input id="intPrincipal" placeholder="Principal" />
-    <input id="intRate" placeholder="Rate" />
-    <input id="intTime" placeholder="Time" />
+    <input id="intPrincipal" placeholder="Principal(₹)" />
+    <input id="intRate" placeholder="Rate(%)" />
+    <input id="intTime" placeholder="Time(years)" />
     <button onclick="getInterest()">Calculate</button>
     <p id="interestResult"></p>
   </div>
@@ -211,9 +211,9 @@
   <div id="breakevenTool" class="tool-content">
     <h2>Break-even Calculator</h2>
     <p class="tool-desc">Find your break-even point.</p>
-    <input id="fixedCost" placeholder="Fixed Cost" />
-    <input id="pricePerUnit" placeholder="Price per Unit" />
-    <input id="variableCost" placeholder="Variable Cost" />
+    <input id="fixedCost" placeholder="Fixed Cost(₹)" />
+    <input id="pricePerUnit" placeholder="Price per Unit(₹)" />
+    <input id="variableCost" placeholder="Variable Cost(₹)" />
     <button onclick="getBreakeven()">Calculate</button>
     <p id="breakevenResult"></p>
   </div>
@@ -258,8 +258,8 @@
   <div id="bmiTool" class="tool-content">
     <h2>BMI Calculator</h2>
     <p class="tool-desc">Check your body mass index.</p>
-    <input id="bmiWeight" placeholder="Weight" />
-    <input id="bmiHeight" placeholder="Height" />
+    <input id="bmiWeight" placeholder="Weight(kg)" />
+    <input id="bmiHeight" placeholder="Height(m)" />
     <button onclick="getBMI()">Calculate</button>
     <p id="bmiResult"></p>
   </div>
@@ -267,11 +267,7 @@
   <h2>Calorie Calculator</h2>
   <p class="tool-desc">Estimate your daily calorie requirement.</p>
 
-  <input id="ageCal" placeholder="Age" />
-  <input id="weightCal" placeholder="Weight" />
-  <input id="heightCal" placeholder="Height" />
-  <input id="genderCal" placeholder="Gender" />
-
+  <input id="weightCal" placeholder="Weight(kg)" />
   <button onclick="getCalories()">Calculate</button>
   <p id="calorieResult"></p>
 </div>
@@ -279,7 +275,7 @@
   <h2>Water Intake Calculator</h2>
   <p class="tool-desc">Find your recommended daily water intake.</p>
 
-  <input id="weightWater" placeholder="Weight" />
+  <input id="weightWater" placeholder="Weight(kg)" />
 
   <button onclick="getWater()">Calculate</button>
   <p id="waterResult"></p>
@@ -297,8 +293,8 @@
   <h2>Startup Valuation</h2>
   <p class="tool-desc">Estimate your startup’s valuation based on revenue and growth.</p>
 
-  <input id="revenueVal" placeholder="Revenue" />
-  <input id="growthVal" placeholder="Growth Rate" />
+  <input id="revenueVal" placeholder="Revenue(₹)" />
+  <input id="growthVal" placeholder="Growth Rate(%)" />
 
   <button onclick="getValuation()">Calculate</button>
   <p id="valuationResult"></p>
@@ -307,8 +303,8 @@
   <h2>Profit Margin</h2>
   <p class="tool-desc">Calculate your profit margin percentage.</p>
 
-  <input id="costProfit" placeholder="Cost" />
-  <input id="revenueProfit" placeholder="Revenue" />
+  <input id="costProfit" placeholder="Cost(₹)" />
+  <input id="revenueProfit" placeholder="Revenue(₹)" />
 
   <button onclick="getProfit()">Calculate</button>
   <p id="profitResult"></p>
@@ -317,8 +313,8 @@
   <h2>Cost Estimator</h2>
   <p class="tool-desc">Estimate total cost including fixed and variable expenses.</p>
 
-  <input id="fixedCostEst" placeholder="Fixed Cost" />
-  <input id="variableCostEst" placeholder="Variable Cost" />
+  <input id="fixedCostEst" placeholder="Fixed Cost(₹)" />
+  <input id="variableCostEst" placeholder="Variable Cost(₹)" />
 
   <button onclick="getCost()">Calculate</button>
   <p id="costResult"></p>

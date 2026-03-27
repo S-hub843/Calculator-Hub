@@ -2,9 +2,15 @@ const BASE_URL = "http://localhost:8080";
 
 /* Tabs */
 function showSection(id, el) {
+  // 👇 If user is inside a tool, go back first
+  document.querySelector(".container").style.display = "block";
+  document.getElementById("toolView").style.display = "none";
+
+  // Switch sections
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
+  // Update active tab
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
   el.classList.add("active");
 }
@@ -75,6 +81,10 @@ function getTimeDuration() {
 function getDateDiff() {
   fetchData(`${BASE_URL}/api/calculators/date-diff?start=${startDate.value}&end=${endDate.value}`, "dateResult", "Days");
 }
+function getPregnancy() {
+  fetchData(
+    `${BASE_URL}/api/calculators/pregnancy?lastPeriod=${lastPeriod.value}`,"pregnancyResult","Due Date");
+}
 
 /* Search */
 function filterTools() {
@@ -105,7 +115,7 @@ function filterTools() {
 /* Health */
 function getCalories() {
   fetchData(
-    `${BASE_URL}/api/calculators/calories?age=${ageCal.value}&weight=${weightCal.value}&height=${heightCal.value}&gender=${genderCal.value}`,
+    `${BASE_URL}/api/calculators/calories?weight=${weightCal.value}`,
     "calorieResult",
     "Calories"
   );
