@@ -2,15 +2,12 @@ const BASE_URL = "http://localhost:8080";
 
 /* Tabs */
 function showSection(id, el) {
-  // 👇 If user is inside a tool, go back first
   document.querySelector(".container").style.display = "block";
   document.getElementById("toolView").style.display = "none";
 
-  // Switch sections
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  // Update active tab
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
   el.classList.add("active");
 }
@@ -20,6 +17,7 @@ function openTool(id) {
   document.querySelector(".container").style.display = "none";
   document.getElementById("toolView").style.display = "block";
   document.querySelector(".back-btn").style.display = "block";
+
   document.querySelectorAll(".tool-content").forEach(t => t.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
@@ -41,7 +39,7 @@ async function fetchData(url, id, label) {
   }
 }
 
-/* Existing */
+/* Calculators */
 function getBMI() {
   fetchData(`${BASE_URL}/api/calculators/bmi?weight=${bmiWeight.value}&height=${bmiHeight.value}`, "bmiResult", "BMI");
 }
@@ -58,7 +56,6 @@ function getEMI() {
   fetchData(`${BASE_URL}/api/calculators/emi?principal=${principal.value}&rate=${rate.value}&time=${time.value}`, "emiResult", "EMI");
 }
 
-/* New */
 function getGST() {
   fetchData(`${BASE_URL}/api/calculators/gst?amount=${gstAmount.value}&rate=${gstRate.value}`, "gstResult", "GST");
 }
@@ -82,16 +79,29 @@ function getTimeDuration() {
 function getDateDiff() {
   fetchData(`${BASE_URL}/api/calculators/date-diff?start=${startDate.value}&end=${endDate.value}`, "dateResult", "Days");
 }
+
 function getPregnancy() {
-  fetchData(
-    `${BASE_URL}/api/calculators/pregnancy?lastPeriod=${lastPeriod.value}`,"pregnancyResult","Due Date");
+  fetchData(`${BASE_URL}/api/calculators/pregnancy?lastPeriod=${lastPeriod.value}`, "pregnancyResult", "Due Date");
 }
 
-/* Search */
+/* ✅ SEARCH FIXED */
 function filterTools() {
   const query = document.getElementById("searchInput").value.toLowerCase();
 
   const sections = document.querySelectorAll(".section");
+
+  // 🔥 Reset when empty
+  if (query === "") {
+    document.querySelectorAll(".tool").forEach(tool => {
+      tool.classList.remove("hidden");
+    });
+
+    sections.forEach(section => {
+      section.classList.remove("hidden");
+    });
+
+    return;
+  }
 
   sections.forEach(section => {
     let hasMatch = false;
@@ -102,64 +112,47 @@ function filterTools() {
       const title = tool.querySelector("h4").innerText.toLowerCase();
 
       if (title.includes(query)) {
-        tool.style.display = "block";
+        tool.classList.remove("hidden");
         hasMatch = true;
       } else {
-        tool.style.display = "none";
+        tool.classList.add("hidden");
       }
     });
 
-    section.style.display = hasMatch ? "block" : "none";
+    section.classList.toggle("hidden", !hasMatch);
   });
 }
 
 /* Health */
 function getCalories() {
-  fetchData(
-    `${BASE_URL}/api/calculators/calories?weight=${weightCal.value}`,
-    "calorieResult",
-    "Calories"
-  );
+  fetchData(`${BASE_URL}/api/calculators/calories?weight=${weightCal.value}`, "calorieResult", "Calories");
 }
 
 function getWater() {
-  fetchData(
-    `${BASE_URL}/api/calculators/water?weight=${weightWater.value}`,
-    "waterResult",
-    "Water Intake"
-  );
+  fetchData(`${BASE_URL}/api/calculators/water?weight=${weightWater.value}`, "waterResult", "Water Intake");
 }
 
 /* Business */
 function getValuation() {
-  fetchData(
-    `${BASE_URL}/api/calculators/startup?revenue=${revenueVal.value}&multiplier=${growthVal.value}`,
-    "valuationResult",
-    "Valuation"
-  );
+  fetchData(`${BASE_URL}/api/calculators/startup?revenue=${revenueVal.value}&multiplier=${growthVal.value}`, "valuationResult", "Valuation");
 }
 
 function getProfit() {
-  fetchData(
-    `${BASE_URL}/api/calculators/profit?cost=${costProfit.value}&revenue=${revenueProfit.value}`,
-    "profitResult",
-    "Profit Margin"
-  );
+  fetchData(`${BASE_URL}/api/calculators/profit?cost=${costProfit.value}&revenue=${revenueProfit.value}`, "profitResult", "Profit Margin");
 }
 
 function getCost() {
-  fetchData(
-    `${BASE_URL}/api/calculators/cost?fixedCost=${fixedCostEst.value}&variableCost=${variableCostEst.value}&units=${unitsEst.value}`,
-    "costResult",
-    "Total Cost"
-  );
+  fetchData(`${BASE_URL}/api/calculators/cost?fixedCost=${fixedCostEst.value}&variableCost=${variableCostEst.value}&units=${unitsEst.value}`, "costResult", "Total Cost");
 }
+
+/* Hover effect */
 document.querySelectorAll(".tool").forEach(card => {
   card.addEventListener("mouseenter", () => {
     card.style.transition = "0.2s";
   });
 });
 
+/* Initial load */
 window.onload = () => {
   document.getElementById("toolView").style.display = "none";
   document.querySelector(".back-btn").style.display = "none";
