@@ -19,7 +19,7 @@ function showSection(id, el) {
 function openTool(id) {
   document.querySelector(".container").style.display = "none";
   document.getElementById("toolView").style.display = "block";
-
+  document.querySelector(".back-btn").style.display = "block";
   document.querySelectorAll(".tool-content").forEach(t => t.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
@@ -27,6 +27,7 @@ function openTool(id) {
 function goBack() {
   document.querySelector(".container").style.display = "block";
   document.getElementById("toolView").style.display = "none";
+  document.querySelector(".back-btn").style.display = "none";
 }
 
 /* API calls */
@@ -153,3 +154,13 @@ function getCost() {
     "Total Cost"
   );
 }
+document.querySelectorAll(".tool").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    card.style.transition = "0.2s";
+  });
+});
+
+window.onload = () => {
+  document.getElementById("toolView").style.display = "none";
+  document.querySelector(".back-btn").style.display = "none";
+};
